@@ -8,4 +8,6 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY ./app /app/app
 
-CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+EXPOSE 9090
+
+CMD ["fastapi", "run", "app/main.py", "--port", "9090"]

@@ -6,6 +6,7 @@ This project explores Docker and Podman container technology. A simple backend a
 - Networking
 - Volumes
 - Container Orchestration
-s 
-#
+
+# References
+- `fastapi` docker implementation [documentation](https://fastapi.tiangolo.com/deployment/docker/#behind-a-tls-termination-proxy)
 
