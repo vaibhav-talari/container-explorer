@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task Manager</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+      }
+      input {
+        padding: 5px;
+        margin-right: 5px;
+      }
+      button {
+        padding: 5px 10px;
+      }
+      ul {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task Manager</h1>
+    <input id="title" placeholder="Enter a task..." />
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/react,nextjs,python,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,nextjs,python,node
 
+#ignore data folder storing local files
+/data
+
 ### NextJS ###
 # dependencies
 /node_modules
