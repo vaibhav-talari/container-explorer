@@ -10,4 +10,6 @@ COPY ./app /app/app
 
 EXPOSE 9090
 
-CMD ["fastapi", "run", "app/main.py", "--port", "9090"]
+ENTRYPOINT ["fastapi", "run", "app/main.py"]
+
+CMD ["--port", "9090"]

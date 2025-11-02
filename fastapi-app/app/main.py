@@ -1,5 +1,6 @@
 from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import csv
 import os
@@ -9,7 +10,7 @@ class User(BaseModel):
     name: str
     role: str
 
-DATA_FILE = "users.csv"
+DATA_FILE = "data/users.csv"
 
 def init_file():
     if not os.path.exists(DATA_FILE):
@@ -47,6 +48,18 @@ async def lifespan(app: FastAPI):
 #passing lifespan argument to create csv file
 app = FastAPI(lifespan=lifespan)
 
+origins = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.post("/user")
 async def create_user(user: User):
     saved_user = write_user(user)
@@ -56,8 +69,12 @@ async def create_user(user: User):
 @app.get("/user/{uid}")
 def read_item(uid: int):
     users = read_users()
-    print(users)
     for u in users:
         if int(u["id"]) == uid:
             return u
     raise HTTPException(status_code=404, detail="User not found")
+
+@app.get("/user")
+def read_item():
+    users = read_users()
+    return users
