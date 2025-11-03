@@ -1,60 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>User Manager</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        max-width: 600px;
-      }
-      h1 {
-        margin-bottom: 20px;
-      }
-      input {
-        padding: 8px;
-        margin-right: 8px;
-      }
-      button {
-        padding: 8px 12px;
-        cursor: pointer;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-      th {
-        background-color: #f0f0f0;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>User Manager</h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>User Manager</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+  <div>
 
     <div>
+      <h1>Add User</h1>
       <input id="name" placeholder="Name" />
       <input id="role" placeholder="Role" />
       <button onclick="addUser()">Add User</button>
     </div>
 
-    <table id="userTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div>
+      <h1>View User</h1>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <div>
+    <h1>Random Number</h1>
+    <p>{{.RAND_NUM}}</p>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+
 </html>

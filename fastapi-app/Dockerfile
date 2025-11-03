@@ -1,15 +1,15 @@
 FROM python:3.14-slim
 
-WORKDIR /app
+WORKDIR /src
 
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /src/requirements.txt
 
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install --no-cache-dir -r /src/requirements.txt
 
-COPY ./app /app/app
+COPY ./app /src
 
-EXPOSE 9090
+EXPOSE 5000
 
-ENTRYPOINT ["fastapi", "run", "app/main.py"]
+ENTRYPOINT ["fastapi", "run", "main.py"]
 
-CMD ["--port", "9090"]
+CMD ["--port", "5000"]

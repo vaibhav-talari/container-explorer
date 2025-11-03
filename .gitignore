@@ -3,6 +3,7 @@
 
 #ignore data folder storing local files
 /data
+main.go
 
 ### NextJS ###
 # dependencies

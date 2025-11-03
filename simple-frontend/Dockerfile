@@ -1,7 +1,17 @@
-FROM nginx:alpine
+# Use the official Go image
+FROM golang:1.21-alpine
 
-WORKDIR /usr/share/nginx/html
+# Install CA certificates for HTTP requests
+#RUN apk add --no-cache ca-certificates bash
 
-COPY ./src /usr/share/nginx/html
+# Set working directory
+WORKDIR /app
 
-EXPOSE 80
+# Copy all your Go code and static files
+COPY . .
+
+# Expose the port your Go app listens on
+EXPOSE 6000
+
+# Run the Go app directly
+CMD ["go", "run", "main.go"]

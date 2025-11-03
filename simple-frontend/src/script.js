@@ -1,4 +1,8 @@
-const API_URL = "http://localhost:8080";
+// since the javascript code loads on the user browser
+// the url should point to the one accessible from the user
+//i.e url accessible outside the container
+//we assume the port 8000 is where backend service is accessible.
+const API_URL = "http://localhost:8000";
 
 async function fetchUsers() {
   try {
@@ -25,7 +29,7 @@ async function fetchUsers() {
       tbody.appendChild(row);
     });
   } catch (err) {
-    console.error("Error fetching users:", err);
+    console.error("error fetching users:", err);
   }
 }
 
@@ -34,7 +38,7 @@ async function addUser() {
   const role = document.getElementById("role").value.trim();
 
   if (!name || !role) {
-    alert("Please enter both name and role.");
+    alert("enter both name and role.");
     return;
   }
 
@@ -42,6 +46,9 @@ async function addUser() {
     await fetch(`${API_URL}/user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      //in es6 have '{}' in stringigy will convert to json
+      //JSON.stringify({ name, role }) => {"name": "john", "role": "admin"}
+      //without {} will result in a string
       body: JSON.stringify({ name, role }),
     });
     document.getElementById("name").value = "";
