@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  backend:
+    image: backendapp
+    container_name: backend
+    ports:
+      - "8000:5000"
+    volumes:
+      - ./fastapi-app/data:/src/data
+    networks:
+      - cont-expr-net
+    restart: unless-stopped
+
+  frontend:
+    image: frontendapp
+    container_name: frontend
+    ports:
+      - "9000:6000"
+    networks:
+      - cont-expr-net
+    restart: unless-stopped
+
+networks:
+  cont-expr-net:
+    external: true
