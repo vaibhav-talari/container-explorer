@@ -2,8 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,nextjs,python,node
 
 #ignore data folder storing local files
-/data
-main.go
+data/
 
 ### NextJS ###
 # dependencies
