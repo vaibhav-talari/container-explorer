@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>User Manager</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+  <div>
+
+    <div>
+      <h1>Add User</h1>
+      <input id="name" placeholder="Name" />
+      <input id="role" placeholder="Role" />
+      <button onclick="addUser()">Add User</button>
+    </div>
+
+    <div>
+      <h1>View User</h1>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h1>Random Number</h1>
+    <p>{{.RAND_NUM}}</p>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+
+</html>

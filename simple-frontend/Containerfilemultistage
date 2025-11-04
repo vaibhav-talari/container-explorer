@@ -1,0 +1,40 @@
+# Build stage
+FROM golang:1.25-alpine AS builder
+
+# Set environment variables
+#ENV CGO_ENABLED=0
+#ENV GOOS=linux
+#ENV GOARCH=amd64
+
+WORKDIR /src
+
+# Copy Go modules manifests
+COPY go.mod ./
+
+# Download dependencies
+#RUN go mod download
+
+
+COPY ./src .
+
+RUN go build -o server .
+
+# build image
+FROM alpine:latest
+
+# Install CA certificates for HTTP requests
+#RUN apk add --no-cache ca-certificates
+
+WORKDIR /src
+
+# Copy built Go binary from builder
+COPY --from=builder /src/server .
+
+# Copy static files
+COPY ./src/static ./static
+
+# Expose the port your Go app listens on
+EXPOSE 6000
+
+# Run the Go app
+CMD ["./server"]

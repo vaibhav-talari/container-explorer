@@ -12,10 +12,11 @@ The application can be started in any of the following way. The purpose of this 
 
 ## Starting the Application with Docker
 
-- build docker image `docker build -t backendapp .`
+- build docker image `docker build -t backendapp -f Containerfile .`
 - run image `docker run --rm -d --name backend -p 8000:5000 backendapp`
 - run image with blind mount `docker run --mount type=bind,src=./data,dst=/src/data --rm -d --name backend -p 8000:5000 backendapp`
     - with `bind mount` the files can accessed from the host machine.
+    - if the `data` folder does not exist, you need to create it.
     - modify the `data/users.csv` file on the hostmachine.
     - the changes will now be reflected in the docker container.
         - view the container directly with `docker exec -it backend /bin/sh`.
@@ -28,10 +29,15 @@ The application can be started in any of the following way. The purpose of this 
 Podman can build images from docker file.
 
 - build podman image `podman build -t bendimg .`
-- run image `podman run --rm -d -p 8000:9090 localhost/bendimg:latest`
+- run image `podman run --network cont-expr-net --mount type=bind,src=./data,dst=/src/data --rm -d --name backend -p 8000:5000 localhost/bendimg`
 
 ## Starting the Application with Python
 
 - create python virtual environment: `python -m venv backend-venv`
 - activate virtual environment: `source backend-venv/bin/activate`
 - start the server: `fastapi run app/main.py --port 9090`
+
+# Image Size Comprassion
+
+- Docker image without multi-stage build: `192MB`.
+- Podman image without multi-stage build: `199 MB`.

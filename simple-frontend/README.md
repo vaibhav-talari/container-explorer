@@ -9,10 +9,27 @@ The application can be started in any of the following way. The purpose of this 
 
 ## Starting the Application with Docker
 
-- build docker image `docker build -t frontendapp .`
+- build docker image `docker build -t frontendapp -f Containerfile .`
+- build docker image with multi-stage `docker build -t frontendapp -f Containerfilemultistage .`
 - run image `docker run --rm -d --name frontend -p 9000:6000 frontendapp`
 - run image with user-defined network `docker run --network cont-expr-net --rm -d --name frontend -p 9000:6000 frontendapp`
+
+## Starting the Application with Podman
+
+Podman can build images from docker file.
+
+- build podman image `podman build -t fendimg .`
+- build podman image with multi-stage `podman build -t fendimg -f Containerfilemultistage .`
+- run image `podman run --network cont-expr-net --rm -d --name frontend -p 9000:6000 localhost/fendimg`
 
 ## Starting the Application with Go
 
 - start the server: `go run local-test.go`
+
+# Image Size Comprassion
+
+- Docker image **without** multi-stage build: `192MB`.
+- Docker image **with** multi-stage build: `20.8MB`.
+- Podman image **without** multi-stage build: `246 MB`.
+- Podman image **with** multi-stage build: `21.1 MB`.
+
